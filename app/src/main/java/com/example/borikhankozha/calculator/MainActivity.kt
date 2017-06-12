@@ -103,9 +103,6 @@ class MainActivity : AppCompatActivity() {
 		
 		equal.setOnClickListener {
 			content = display.getText().toString()
-			if (content[0] == '-') {
-				content = "0$content"
-			}
 			content = ps.solveAllMultDiv(content)
 			content = ps.solveAllAddSub(content)
 			answer.setText(content)
