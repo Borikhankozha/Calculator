@@ -10,8 +10,12 @@ class ProblemSolver {
 	
 	fun solveAllMultDiv(content: String): String {
 		var ans = ""
+		var content2 = content
+		if (content[0] == '-') {
+			content2 = "0$content"
+		}
 		
-		var elements: List<String> = content.split("+")
+		var elements: List<String> = content2.split("+")
 		
 		for (i in 0..elements.size - 1) {
 			var elements2: List<String> = elements.get(i).split("-")
@@ -26,10 +30,7 @@ class ProblemSolver {
 		return ans
 	}
 	
-	fun solveAllAddSub(content: String): String = when {
-		isOnlyNumbers(content) -> content
-		else -> solveAllAddition(insertPlusBeforeMinus(content))
-	}
+	fun solveAllAddSub(content: String): String = solveAllAddition(insertPlusBeforeMinus(content))
 	
 	private fun getMultDiv(content: String): String {
 		var elements: List<String> = content.split('*')
@@ -65,10 +66,6 @@ class ProblemSolver {
 	}
 	
 	private fun solveAllAddition(content: String): String {
-		if (isOnlyNumbers(content) || !content.contains('+')) {
-			return content
-		}
-		
 		var elements: List<String> = content.split('+')
 		
 		var sum = 0.0
@@ -77,15 +74,6 @@ class ProblemSolver {
 		}
 		
 		return sum.toString()
-	}
-	
-	private fun isOnlyNumbers(content: String): Boolean {
-		for (i in 0..content.length - 1) {
-			if (content[i] < '0' || content[i] > '9')
-				return false
-		}
-		
-		return true
 	}
 	
 }
