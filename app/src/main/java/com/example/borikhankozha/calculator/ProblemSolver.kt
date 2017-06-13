@@ -6,10 +6,12 @@ package com.example.borikhankozha.calculator
 
 class ProblemSolver {
 	
-	val MINUS_SYMBOL = '-'
-	val PLUS_SYMBOL = '+'
-	val MULTIPLY_SYMBOL = '*'
-	val DIVIDE_SYMBOL = '/'
+	companion object {
+		val MINUS_SYMBOL = '-'
+		val PLUS_SYMBOL = '+'
+		val MULTIPLY_SYMBOL = '*'
+		val DIVIDE_SYMBOL = '/'
+	}
 	
 	fun solveAllMultDiv(content: String): String {
 		var ans = ""
