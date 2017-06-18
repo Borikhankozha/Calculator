@@ -1,6 +1,7 @@
 apply plugin: 'com.android.application'
 
 apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
 
 android {
     compileSdkVersion 25
@@ -13,6 +14,9 @@ android {
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
+    dataBinding {
+        enabled = true
+    }
     buildTypes {
         release {
             minifyEnabled false
@@ -22,12 +26,38 @@ android {
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
-    androidTestImplementation('com.android.support.test.espresso:espresso-core:2.2.2', {
-        exclude group: 'com.android.support', module: 'support-annotations'
-    })
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
-    implementation 'com.android.support:appcompat-v7:25.3.1'
-    testImplementation 'junit:junit:4.12'
-    implementation 'com.android.support.constraint:constraint-layout:1.0.2'
+
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+
+    compile "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
+    compile 'com.android.support:appcompat-v7:25.1.0'
+    compile 'com.android.support:design:25.1.0'
+
+    compile 'com.android.support.constraint:constraint-layout:1.0.2'
+
+    kapt "com.android.databinding:compiler:$android_plugin_version"
+    testCompile "junit:junit:$junit_version"
+
+    androidTestCompile 'com.android.support:support-annotations:25.1.0'
+    androidTestCompile 'com.android.support.test:runner:0.5'
+    androidTestCompile 'com.android.support.test:rules:0.5'
+    androidTestCompile 'com.android.support.test.espresso:espresso-core:2.2.2'
+    androidTestCompile 'org.hamcrest:hamcrest-library:1.3'
+//    androidTestCompile("com.android.support.test.espresso:espresso-core:$espresso_version", {
+//        exclude module: 'rules'
+//        exclude module: 'javax.annotation-api'
+//        exclude module: 'support-annotations'
+//        exclude group: 'com.google.code.findbugs', module: 'jsr305'
+//    })
+//    androidTestCompile("com.android.support.test.espresso:espresso-contrib:$espresso_version", {
+//        exclude module: 'espresso-core'
+//        exclude module: 'support-v4'
+//        exclude module: 'recyclerview-v7'
+//        exclude module: 'appcompat-v7'
+//        exclude module: 'support-annotations'
+//        exclude module: 'design'
+//        exclude group: 'com.google.code.findbugs', module: 'jsr305'
+//    })
+
+
 }
